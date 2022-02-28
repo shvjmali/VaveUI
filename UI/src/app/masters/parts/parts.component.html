@@ -1,0 +1,193 @@
+<ng-snotify></ng-snotify>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="animated fadeIn">
+  <!--
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-block">
+          <div class="h5 text-muted mb-2 text-uppercase "><strong>Add Part Code</strong></div>
+          <hr />
+          <form novalidate class="file-process" #TwistCodeForm="ngForm">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="row margin-bottom-15">
+                  <div class="col-lg-3">
+                    <div class="input-group">
+                      <input class="form-control" type="text" placeholder="Wire 1" required name="one" id="one" #one="ngModel" [(ngModel)]="twistCodeData.wire1" />
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="input-group">
+                      <input class="form-control" type="text" placeholder="wire 2" required name="two" id="two" #two="ngModel" [(ngModel)]="twistCodeData.wire2" />
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="input-group">
+                      <input class="form-control" type="text" placeholder="wire 3" required name="three" id="three" #three="ngModel"
+                        [(ngModel)]="twistCodeData.wire3" />
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="input-group">
+                      <input class="form-control" type="text" placeholder="wire 4" required name="four" id="four"
+                        #four="ngModel" [(ngModel)]="twistCodeData.wire4" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="row margin-bottom-15">
+                  <div class="col-lg-3">
+                    <div class="input-group">
+                      <input class="form-control" type="text" placeholder="Component Code" required name="twistComponent" id="twistComponent"
+                        #twistComponent="ngModel" [(ngModel)]="twistCodeData.componentCode" />
+                    </div>
+                  </div>
+                  <div class="col-lg-3"></div>
+                  <div class="col-lg-3"></div>
+                  <div class="col-lg-3">
+                    <div class="input-group" style="margin-left: 78px;margin-top: 10px;">
+                      <button style="margin-right: 10px" class="btn btn-primary" type="button" (click)="addTwistCode()">Add Code</button>
+                      <button class="btn btn-primary" type="button" (click)="reset(TwistCodeForm)">Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+  <div class="">
+    <div class="card">
+      <div class="card-header"><h4><strong>PART MASTER LIST</strong></h4></div>
+      <div class="card-block">
+        <div class="row">
+        <div class="col-lg-12">
+          <div class="row margin-bottom-15">
+            <div class="col-lg-3">
+              <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="searchVal" 
+                (ngModelChange)='checkSearchVal()' placeholder="Part Number" />
+              </div>
+            </div>
+            <div class="col-lg-6"></div>
+            <div class="col-lg-3">
+              <!-- <div class="input-group" style="margin-left: 176px;margin-top: 2px;">
+                <button style="float:right" class="btn btn-primary" type="button" (click)="addTwistCode()">Search</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+        <table class="table table-responsive table-bordered table-stripped text-center table-sm">
+          <thead>
+            <tr>
+              <th>Yazaki Part Number</th>
+              <th>T Part Number</th>
+              <th>Supplier Part Number</th>
+              <!-- <th>Customer Part Number</th> -->
+              <th>Comodity</th>
+              <th>Upload</th>
+              <th>View</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let code of pagedItems">
+              <td>{{code.yazakipartnumber}}</td>
+              <td>{{code.tpartnumber}}</td>
+              <td>{{code.supplierpartnumber}}</td>
+              <!-- <td>{{code.customerpartnumber}}</td> -->
+              <td>{{code.Comodity}}</td>
+              <td>
+                <span>
+                  <i (click)="UploadDocument(code)" style="font-size: 20px;color:blue;cursor: pointer;" title="Delete Twist Code"
+                    class="fa fa-upload"></i>
+                </span>
+              </td>
+              <td>
+                <span>
+                  <i (click)="ViewPartDetail(code)" style="font-size: 20px;color:blue;cursor: pointer;" title="Delete Twist Code"
+                    class="fa fa-eye"></i>
+                </span>
+              </td>
+              <td>
+                <span>
+                  <i (click)="EditPartDetail(code)" style="font-size: 20px;color:blue;cursor:pointer;" title="Edit Part"
+                  class="fa fa-edit"></i>
+                </span>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul style="float: right;" *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{ disabled: pager.currentPage === 1 }"><a (click)="setPage(1)">First</a></li>
+          <li [ngClass]="{ disabled: pager.currentPage === 1 }"><a (click)="setPage(pager.currentPage - 1)">Previous</a></li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{ active: pager.currentPage === page }">
+            <a (click)="setPage(page)">{{ page }}</a>
+          </li>
+          <li [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"><a (click)="setPage(pager.currentPage + 1)">Next</a></li>
+          <li [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"><a (click)="setPage(pager.totalPages)">Last</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .custom-file-input {
+    padding: 5px;
+    color: #999;
+    border: 1px solid #000;
+    vertical-align: middle;
+    opacity: 1;
+  }
+
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+  .custom-file-input::before {
+    content: 'Browse';
+    color: #666;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 3px;
+    margin: -2px 0 -3px 425px;
+    padding: 5px 20px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-align: center;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+
+  .custom-file-input:active {
+    outline: 0;
+  }
+
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  }
+
+  form.ng-untouched.ng-pristine.ng-valid:focus,
+  input#upload:focus {
+    outline: none;
+  }
+</style>

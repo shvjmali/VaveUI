@@ -1,0 +1,101 @@
+<ng-snotify></ng-snotify>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="animated fadeIn">
+    <div class="row">        
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-block">
+                    <div class="h5 text-muted mb-2 text-uppercase">
+                      <h4><strong>Upload Image and PDF for PartNumber - </strong></h4></div>
+                    <hr />
+                    <form novalidate class="file-process" #fileProcessForm="ngForm">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Document Type : </label>
+                                <select class="w-25" name="status" id= "status" #status="ngModel" [(ngModel)]= "fileTypeCode">
+                                    <option value="0" selected="true">Select Type</option>
+                                    <option value="Image">Image</option>
+                                    <option value="PDF">PDF</option>
+                                    <option value="PDF">Presentation</option>
+                                    <option value="PDF">Tiff</option>
+
+
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="margin-bottom-15 input-group" style="width: 251px;">
+                                    <input class="form-control col-lg-3" id="customFile" #customFile type="file" style="color: red;padding: 0px;" name="file" (change)="fileChange($event)" multiple />
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                              <div class="pull-right row">
+                                <div>
+                                  <button class="btn btn-primary" type="button" (click)="transform(fileProcessForm)">Upload</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <label>(Allowed documents types : pdf/jpg/png/tiff) </label>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="card">
+          <div class="card-header"><strong>Uploaded Document</strong>
+            <button class="btn btn-primary" (click)="getFileData()" style="margin-top: 1px;float: right;">Refresh Output</button>
+          </div>
+          <div class="card-block">
+            <table class="table table-responsive table-bordered table-stripped text-center table-sm">
+              <thead>
+                <tr>
+                   <th>Part Number</th>
+                   <th>Document Name</th> 
+                   <th>Date</th>
+                   <th>Document Type</th>
+                   <th>Uploaded By</th>
+                   <th>Active/InActive</th>                   
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let file of pagedItems; let i =index">
+                  <td>{{ file.partNumber }}</td>
+                  <td>{{ file.Doc_Name }}</td>
+                  <td>{{ file.date | date: 'dd/MM/yyyy hh:mm:ss' }}</td>
+                  <td>{{ file.Doc_Type }}</td>
+                  <td>{{ file.uploadedBy }}</td> 
+                  <td>
+                    <a class="color-blue" title="Activate" *ngIf="!file.isActive">
+                      <i class="fa fa-plus-square" (click)="Activate(file,i)"></i>
+                    </a>
+                    <a class="color-blue" title="De-Activate" *ngIf="file.isActive">
+                      <i class="fa fa-close" area-hidden="true" (click)="DeActivate(file,i)"></i>
+                    </a>
+                  </td>                 
+                </tr>
+              </tbody>
+            </table>
+            <ul style="float: right;" *ngIf="pager.pages && pager.pages.length" class="pagination">
+              <li [ngClass]="{ disabled: pager.currentPage === 1 }"><a (click)="setPage(1)">First</a></li>
+              <li [ngClass]="{ disabled: pager.currentPage === 1 }"><a (click)="setPage(pager.currentPage - 1)">Previous</a></li>
+              <li *ngFor="let page of pager.pages" [ngClass]="{ active: pager.currentPage === page }">
+                <a (click)="setPage(page)">{{ page }}</a>
+              </li>
+              <li [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"><a (click)="setPage(pager.currentPage + 1)">Next</a></li>
+              <li [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"><a (click)="setPage(pager.totalPages)">Last</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>    
+</div>
+<style>
+    .w-25{
+        margin-left: 10px;
+        width: 50% !important;
+    }
+</style>

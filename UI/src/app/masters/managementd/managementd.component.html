@@ -1,0 +1,79 @@
+<div class="row">
+    <!-- <div class="col-sm-2"></div> -->
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="card" style="width: 90%; margin:0px auto 1.5rem auto">
+          <div class="card-header"><h4><strong>PART MASTER COUNT</strong></h4></div>
+          <div class="card-block">
+            {{reportm.PartCount}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card" style="width: 90%; margin:0px auto 1.5rem auto">
+          <div class="card-header"><h4><strong>TOTAL PROPOSAL COUNT</strong></h4></div>
+          <div class="card-block">
+            {{reportm.ProposalCount}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="card" style="width: 90%; margin:0px auto 1.5rem auto">
+          <div class="card-header"><h4><strong> ALTERNATE PROPOSAL COUNT</strong></h4></div>
+          <div class="card-block">
+            {{reportm.AlternateCount}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card" style="width: 90%; margin:0px auto 1.5rem auto">
+          <div class="card-header"><h4><strong>INLINE PROPOSAL COUNT</strong></h4></div>
+          <div class="card-block">
+            {{reportm.InlineCount}}
+          </div>
+        </div>
+      </div>    
+    </div>
+    <!-- <div class="col-sm-6 text-center">
+      <h5 class="text-center">Team Code Wise Proposal Count</h5>
+       <canvas baseChart
+            [data]="pieNRBChartData"
+            [labels]="pieNRChartLabels"
+            [chartType]="pieNRBChartType"
+            [options]="pieNRChartOptions"
+            [legend]="barChartLegend"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)" style="width: 400px; height:400px; margin:auto;">
+        </canvas>
+    </div> -->
+    <!-- <div class="col-sm-2"></div> -->
+  </div>
+
+<div class="row">
+  <div class="col-sm-6 text-center">
+    <h5 class="text-center">Commodity Wise Part Count</h5>
+    <canvas baseChart
+          [data]="partCTypeData"
+          [labels]="partCType"
+          [chartType]="ChartType"
+          [options]="ChartOptions"
+          style="width: 400px !important; height:400px !important; margin:auto;">
+      </canvas>
+  </div>
+  
+  <div class="col-sm-6 text-center">
+    <h5 class="text-center">Division Wise Proposal Count</h5>
+    <canvas baseChart
+          [data]="proposalTeamTypeData"
+          [labels]="proposalTeamType"
+          [chartType]="ChartType"
+          [options]="ChartOptions"          
+           style="width: 400px !important; height:400px !important; margin:auto;">
+      </canvas>
+  </div>
+  <!--(chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)"
+  -->
+</div>

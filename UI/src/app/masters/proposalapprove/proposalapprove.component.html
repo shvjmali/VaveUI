@@ -1,0 +1,249 @@
+<ng-snotify></ng-snotify>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="animated fadeIn">
+  <div class="">
+    <div class="card">
+      <div class="card-header"><h4><strong>Pending Approval Technical Proposal List</strong></h4></div>
+      <div class="card-block">
+        <div class="row">
+        <div class="col-lg-12">
+          <div class="row margin-bottom-15">
+            <div class="col-lg-3">
+              <!-- <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="searchVal" 
+                (ngModelChange)='checkSearchVal()' placeholder="Control Number or Part Number" />
+              </div> -->
+            </div>
+            <div class="col-lg-6"></div>
+            <div class="col-lg-3">
+              <!-- <div class="input-group" style="margin-left: 176px;margin-top: 2px;">
+                <button style="float:right" class="btn btn-primary" type="button" (click)="addTwistCode()">Search</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+        <table class="table table-responsive table-bordered table-stripped text-center table-sm">
+          <thead>
+            <tr>
+              <th>Control Number</th>
+              <th>Proposal Type</th>
+              <th>Team Code</th>
+              <th>Part List</th>
+              <th>Created By</th>
+              <th>Created On</th>
+              <th>Action</th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let code of pagedItems">
+            <ng-container *ngFor="let partN of code.sPartList?.split(','); let i = index;">
+              <tr *ngIf="i == 0; else elseBlock">
+                <td [attr.rowspan]="code.PartC.length">
+                  {{code.ProposalNumber}}
+                </td>
+                <td [attr.rowspan]="code.PartC.length">
+                  {{code.ProposalType}}
+                </td>
+                <td [attr.rowspan]="code.PartC.length">
+                  {{code.TeamCode}}
+                </td>
+                <td *ngIf="code.ProposalType == 'Inline'; else tp">
+                      <ng-container *ngFor="let ipartN of partN?.split('-'); let j = index">
+                          <div *ngIf="j == 0; else inp">
+                            <a (click)="ViewPartDetail(ipartN)">{{ipartN}}</a> - 
+                          </div>
+                          <ng-template #inp> 
+                            <div *ngFor="let ipartNdetail of ipartN?.split('#'); let M = index">
+                              <div *ngIf="M == 0;">
+                                <a (click)="ViewPartDetail(ipartNdetail)">
+                                {{ipartNdetail}}
+                              </a> 
+                              </div>                             
+                            </div>
+                          </ng-template>                            
+                      </ng-container>
+                </td>
+                <ng-template #tp>
+                  <td>
+                    <div *ngFor="let ipartNdetail of partN?.split('#'); let M = index">
+                      <div *ngIf="M == 0;">
+                        <a (click)="ViewPartDetail(ipartNdetail)">
+                        {{ipartNdetail}}
+                      </a> 
+                      </div>                             
+                    </div>
+                  </td>
+                </ng-template>
+                <td>
+                  {{code.CreatedBy}}
+                </td>
+                <td>
+                  {{code.CreatedDate}}
+                </td>                
+                <td>
+                  <ng-container *ngFor="let ipartNdetail of partN?.split('#'); let K = index">
+                    <div *ngIf="K == 1;">
+                      <a class="color-blue" title="Edit"
+                        (click)="approvedenypart(ipartNdetail, ApproverDenyDetails)">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                    </div>
+                  </ng-container>
+                </td>
+              <td [attr.rowspan]="code.PartC.length">
+                <span>
+                  <i (click)="ViewProposalDetail(code)" style="font-size: 20px;color:blue;cursor: pointer;" title="View Proposal Details"
+                    class="fa fa-eye"></i>
+                </span>
+              </td>
+            </tr>
+            <ng-template #elseBlock>
+              <tr>
+                <td *ngIf="code.ProposalType == 'Inline'; else tp">
+                  <ng-container *ngFor="let ipartN of partN?.split('-'); let j = index">
+                      
+                      <div *ngIf="j == 0; else inp">
+                        <a (click)="ViewPartDetail(ipartN)">{{ipartN}}</a> - 
+                      </div>
+
+                      <ng-template #inp> 
+                        <div *ngFor="let ipartNdetail of ipartN?.split('#'); let M = index">
+                          <div *ngIf="M == 0;">
+                            <a (click)="ViewPartDetail(ipartNdetail)">
+                            {{ipartNdetail}}
+                          </a> 
+                          </div>                             
+                        </div>
+                      </ng-template>                            
+                  </ng-container>
+                </td>
+                <ng-template #tp>
+                  <td>
+                    <div *ngFor="let ipartNdetail of partN?.split('#'); let M = index">
+                      <div *ngIf="M == 0;">
+                        <a (click)="ViewPartDetail(ipartNdetail)">
+                        {{ipartNdetail}}
+                      </a> 
+                      </div>                             
+                    </div>
+                  </td>
+                </ng-template>
+                <td>
+                  {{code.CreatedBy}}
+                </td>
+                <td>
+                  {{code.CreatedDate}}
+                </td>
+                <td>
+                  <ng-container *ngFor="let ipartNdetail of partN?.split('#'); let K = index">
+                    <div *ngIf="K == 1;">
+                      <a class="color-blue" title="Edit"
+                        (click)="approvedenypart(ipartNdetail, ApproverDenyDetails)">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                    </div>
+                  </ng-container>
+                </td>
+              </tr>
+            </ng-template>
+            </ng-container>           
+          </tbody>
+        </table>
+        <ul style="float: right;" *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{ disabled: pager.currentPage === 1 }"><a (click)="setPage(1)">First</a></li>
+          <li [ngClass]="{ disabled: pager.currentPage === 1 }"><a (click)="setPage(pager.currentPage - 1)">Previous</a></li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{ active: pager.currentPage === page }">
+            <a (click)="setPage(page)">{{ page }}</a>
+          </li>
+          <li [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"><a (click)="setPage(pager.currentPage + 1)">Next</a></li>
+          <li [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"><a (click)="setPage(pager.totalPages)">Last</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #ApproverDenyDetails="bs-modal" [config]="{backdrop: 'true'}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-primary modal-lg" role="document">
+    <form novalidate autocomplete="off" #handOverForm="ngForm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Approve Deny Items</h4>
+          <button type="button" class="close" (click)="ApproverDenyDetails.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="card-block">
+            <div class="row">
+              <span>
+                <h5>Please, Approve or Reject the proposal part number</h5>
+              </span>
+            </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <textarea class="input-group form-control rounded-0" rows="5" name="Remarks" [(ngModel)]="proposalCode.Remarks"
+                    #Remarks="ngModel" placeholder="Remarks" class="form-control"></textarea>                  
+                </div>
+              </div>            
+          </div>
+        </div>
+        <div class="modal-footer">
+            <!-- <button type="submit" class="btn btn-success" (click)='ApproveSummary(proposalCode); ApproverDenyDetails.hide()'>Approve</button>
+            <button type="submit" class="btn btn-danger" (click)='RejectSummary(proposalCode); ApproverDenyDetails.hide()'>Reject</button> -->
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  .custom-file-input {
+    padding: 5px;
+    color: #999;
+    border: 1px solid #000;
+    vertical-align: middle;
+    opacity: 1;
+  }
+
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+  .custom-file-input::before {
+    content: 'Browse';
+    color: #666;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 3px;
+    margin: -2px 0 -3px 425px;
+    padding: 5px 20px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-align: center;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+
+  .custom-file-input:active {
+    outline: 0;
+  }
+
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  }
+
+  form.ng-untouched.ng-pristine.ng-valid:focus,
+  input#upload:focus {
+    outline: none;
+  }
+</style>

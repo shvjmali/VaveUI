@@ -1,0 +1,1029 @@
+<!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading> -->
+<section>
+    <form novalidate autocomplete="off" id="myForm" #myForm="ngForm" name="myForm">
+        <div class="FormClient">
+            <div class="form-group">
+                <div class="card">
+                    <div class="card-header Search_padding">
+                        <strong>
+                            <h5> VIEW PART DETAILS </h5>
+                        </strong>
+                    </div>
+                    <br>
+                    <div class="card-block Search_padding">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 border-box">
+                                    <div class="row">
+                                        <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                                            <tr>
+                                                <td>
+                                                    <label class="font-weight-bold">Yazaki Part Number:&nbsp; </label>
+                                                </td>
+                                                <td>
+                                                    <label>{{partcomponent.yazakipartnumber}}</label>
+                                                </td>
+                                                <td>
+                                                    <label class="font-weight-bold">Internal Part Number:&nbsp; </label>
+                                                </td>
+                                                <td>
+                                                    <label>{{partcomponent.tpartnumber}}</label>
+                                                </td>
+                                                <td>
+                                                    <label class="font-weight-bold">Comodity:&nbsp; </label>
+                                                </td>
+                                                <td>
+                                                    <label>{{partcomponent.Comodity}}</label>
+                                                </td>
+                                                <td>
+                                                    <label class="font-weight-bold">Description:&nbsp; </label>
+                                                </td>
+                                                <td>
+                                                    <label>{{partcomponent.description}}</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="font-weight-bold">Supplier Part Number:&nbsp; </label>
+                                                   
+                                                </td>
+                                                <td> <label>{{partcomponent.supplierpartnumber}}</label></td>
+                                                <td>
+                                                    <label class="font-weight-bold">Supplier Name:&nbsp; </label>
+                                                    
+                                                </td>
+                                                <td><label>{{partcomponent.suppliername}}</label></td>
+                                                <td>
+                                                    <label class="font-weight-bold">Customer Part Number:&nbsp; </label>
+                                                    
+                                                </td>
+                                                <td><label>{{partcomponent.customerpartnumber}}</label></td>
+                                                <td>
+                                                    <label class="font-weight-bold">Customer Name:&nbsp; </label>
+                                                    
+                                                </td>
+                                                <td><label>{{partcomponent.customername}}</label></td>
+                                            </tr>
+                                            <ng-container *ngIf = "partcomponent.Comodity == 'CONN'">
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">No of Poles:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.noofpoles}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Pin Rows/Layout:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.pinrows}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Sealed/Unsealed:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.sealed}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Gender:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.gender}}</label></td>     
+                                                </tr>        
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Series:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.series}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Color:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.color}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Material:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.material}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Hybrid:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.hybrid}}</label></td>
+                                                </tr>        
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Width (mm):&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.width}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Length (mm):&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.length}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Height (mm):&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.height}}</label></td>    
+                                                    <td>
+                                                        <label class="font-weight-bold">UOM:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.uom}}</label></td>
+                                                </tr>    
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Max (&#8451;):&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.maxtemp}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Min (&#8451;):&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.mintemp}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Applicable Terminal:&nbsp;</label>
+                                                        <br>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            <ng-container *ngFor="let partN of partcomponent.terminal?.split(';'); let j = index">
+                                                                <div *ngIf="j == 0; else inp">
+                                                                    <a (click)="ViewPartDetail(partN)">{{partN}}</a> 
+                                                                  </div>
+                                                                  <ng-template #inp> 
+                                                                     <!-- <br>  -->
+                                                                    <div><a (click)="ViewPartDetail(partN)">{{partN}}</a></div>
+                                                                </ng-template>
+                                                            </ng-container>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Applicable Seal:&nbsp; </label>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            <ng-container *ngFor="let partN of partcomponent.seal?.split(';'); let j = index">
+                                                                <div *ngIf="j == 0; else inp">
+                                                                    <a (click)="ViewPartDetail(partN)">{{partN}}</a> 
+                                                                  </div>
+                                                                  <ng-template #inp> 
+                                                                     <!-- <br>  -->
+                                                                    <div><a (click)="ViewPartDetail(partN)">{{partN}}</a></div>
+                                                                </ng-template>
+                                                            </ng-container>
+                                                        </label>
+                                                    </td>
+                                                </tr> 
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Applicable Dummy Plug:&nbsp; </label>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            <ng-container *ngFor="let partN of partcomponent.dummyplug?.split(';'); let j = index">
+                                                                <div *ngIf="j == 0; else inp">
+                                                                    <a (click)="ViewPartDetail(partN)">{{partN}}</a> 
+                                                                  </div>
+                                                                  <ng-template #inp> 
+                                                                     <!-- <br>  -->
+                                                                    <div><a (click)="ViewPartDetail(partN)">{{partN}}</a></div>
+                                                                </ng-template>
+                                                            </ng-container>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Applicable Accessory:&nbsp; </label>
+                                                    </td>  
+                                                    <td>
+                                                        <label>
+                                                            <ng-container *ngFor="let partN of partcomponent.accessory?.split(';'); let j = index">
+                                                                <div *ngIf="j == 0; else inp">
+                                                                    <a (click)="ViewPartDetail(partN)">{{partN}}</a> 
+                                                                  </div>
+                                                                  <ng-template #inp> 
+                                                                     <!-- <br>  -->
+                                                                    <div><a (click)="ViewPartDetail(partN)">{{partN}}</a></div>
+                                                                </ng-template>
+                                                            </ng-container>
+                                                        </label>
+                                                    </td>                                                  
+                                                    <td>
+                                                        <label class="font-weight-bold">Mating YPN:&nbsp; </label>
+                                                    </td>
+                                                    <td>
+                                                        <label>
+                                                            <ng-container *ngFor="let partN of partcomponent.matingypn?.split(';'); let j = index">
+                                                                <div *ngIf="j == 0; else inp">
+                                                                    <a (click)="ViewPartDetail(partN)">{{partN}}</a> 
+                                                                </div>
+                                                                <ng-template #inp> 
+                                                                 <!-- <br>  -->
+                                                                    <div><a (click)="ViewPartDetail(partN)">{{partN}}</a></div>
+                                                                </ng-template>
+                                                            </ng-container>
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Mating Supplier Part:&nbsp; </label>
+                                                    </td>   
+                                                    <td>
+                                                        <label>
+                                                            <ng-container *ngFor="let partN of partcomponent.matingsupplierpart?.split(';'); let j = index">
+                                                                <div *ngIf="j == 0; else inp">
+                                                                    {{partN}}
+                                                                </div>
+                                                                <ng-template #inp> 
+                                                                    <div>{{partN}}</div>
+                                                                </ng-template>
+                                                            </ng-container>
+                                                        </label>
+                                                    </td>                                                 
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Mating Supplier Name:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.matingsuppliername}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Weight:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.weight}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Rank:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.rank}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Remarks:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.remarks}}</label>
+                                                    </td>
+                                                </tr>
+                                            </ng-container>
+                                            <ng-container *ngIf = "partcomponent.Comodity == 'TERM'">
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Sealed/Unsealed:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.sealed}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Gender:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.gender}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Series:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.series}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Terminal Plating:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.platingcolor}}</label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Material:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.material}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">UOM:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.uom}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Max (&#8451;):&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.maxtemp}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Min (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.mintemp}}</label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Applicable Wire Range:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.applicablewirerange}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Wire Insulation Dia Range:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.wireinsulationdiarange}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Mating YPN:&nbsp; </label>
+                                                       
+                                                    </td>  
+                                                    <td>
+                                                        <label>{{partcomponent.matingypn}}</label>
+                                                    </td>    
+                                                    <td>
+                                                        <label class="font-weight-bold">Mating Supplier Part:&nbsp; </label>
+                                                       
+                                                    </td>  
+                                                    <td>
+                                                        <label>
+                                                            <ng-container *ngFor="let partN of partcomponent.matingsupplierpart?.split(';'); let j = index">
+                                                                <div *ngIf="j == 0; else inp">
+                                                                    {{partN}}
+                                                                </div>
+                                                                <ng-template #inp> 
+                                                                    <div>{{partN}}</div>
+                                                                </ng-template>
+                                                            </ng-container>
+                                                        </label>
+                                                    </td>                                            
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Mating Supplier Name:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.matingsuppliername}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Weight:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.weight}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Rank:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.rank}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Remarks:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.remarks}}</label>
+                                                    </td>
+                                                </tr>
+                                            </ng-container>    
+                                            <ng-container *ngIf = "partcomponent.Comodity == 'CAVITY SEAL'">
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Series:&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.series}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Color:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.color}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Material:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.material}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Length (mm):&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.length}}</label>
+                                                    </td>
+                                                </tr>   
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">UOM:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.uom}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Max (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.maxtemp}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Min (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.mintemp}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">OD (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>   
+                                                    <td>
+                                                        <label>{{partcomponent.od}}</label>
+                                                    </td>                                                                                                     
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Applicable Wire Range:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.applicablewirerange}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Wire Insulation Dia Range:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.wireinsulationdiarange}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Weight:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.weight}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Rank:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.rank}}</label>
+                                                    </td>
+                                                </tr>
+                                                <tr>                                                    
+                                                    <td colspan="4">
+                                                        <label class="font-weight-bold">Remarks:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.remarks}}</label>
+                                                    </td>
+                                                </tr>
+                                            </ng-container>
+                                            <ng-container *ngIf = "partcomponent.Comodity == 'CAVITY PLUG'">
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Series:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.series}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Color:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.color}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Material:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.material}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Length (mm):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.length}}</label>
+                                                    </td>
+                                                </tr>   
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">UOM:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.uom}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Max (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.maxtemp}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Min (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.mintemp}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">OD (Outside):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.od}}</label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Weight:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.weight}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Rank:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.rank}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Remarks:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.remarks}}</label>
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                            </ng-container>
+                                            <ng-container *ngIf = "partcomponent.Comodity == 'GROMMET'">
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Color:&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.color}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Material:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.material}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Width (mm):&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.width}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Length (mm):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.length}}</label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">UOM:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.uom}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Max (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.maxtemp}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Min (&#8451;):&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.mintemp}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">OD (Outside):&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.od}}</label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Bundle Dia:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.bundledia}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Whole Size:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                        <label>{{partcomponent.wholesize}}</label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Panel Thickness:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.panelthickness}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Grommet Hardness:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.grommethardness}}</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Weight:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.weight}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Rank:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.rank}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Remarks:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.remarks}}</label></td>
+                                                    <td></td>
+                                                </tr>
+                                            </ng-container>
+                                            <ng-container *ngIf = "partcomponent.Comodity == 'PROTECTOR'">
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Color:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.color}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Material:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.material}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">UOM:&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>  <label>{{partcomponent.uom}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Max (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.maxtemp}}</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Min (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.mintemp}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Weight:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.weight}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Rank:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.rank}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Remarks:&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>  <label>{{partcomponent.remarks}}</label></td>
+                                                </tr>                                                
+                                            </ng-container>
+                                            <ng-container *ngIf = "partcomponent.Comodity == 'TUBE'">
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Color:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.color}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Material:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.material}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Length (mm):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.length}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">UOM:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.uom}}</label></td>
+                                                                                                        
+                                                </tr>    
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Max (&#8451;):&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>  <label>{{partcomponent.maxtemp}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Min (&#8451;):&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>  <label>{{partcomponent.mintemp}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Wall Thickness (mm):&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.wallthickness}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">DIA:&nbsp;</label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.sealdia}}</label></td>
+                                                                                                      
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Rank:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.rank}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Remarks:&nbsp; </label>
+                                                     
+                                                    </td>
+                                                    <td>   <label>{{partcomponent.remarks}}</label></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </ng-container>
+                                            <ng-container *ngIf = "partcomponent.Comodity == 'WIRE'">
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Color:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.color}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">UOM:&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>  <label>{{partcomponent.uom}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Max (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.maxtemp}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Min (&#8451;):&nbsp; </label>
+                                                        
+                                                    </td>    
+                                                    <td><label>{{partcomponent.mintemp}}</label></td>                                                
+                                                </tr>    
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">CSA:&nbsp;</label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.csa}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">No of Strands:&nbsp;</label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.noofstrands}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Wire Standard:&nbsp;</label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.wirestandard}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Rank:&nbsp; </label>
+                                                       
+                                                    </td>  
+                                                    <td> <label>{{partcomponent.rank}}</label></td>                                                
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <label class="font-weight-bold">Remarks:&nbsp; </label>
+                                                     
+                                                    </td>
+                                                    <td>   <label>{{partcomponent.remarks}}</label></td>
+                                                </tr>
+                                            </ng-container>
+                                            <ng-container *ngIf = "partcomponent.Comodity == 'CLIP'">
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Color:&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>  <label>{{partcomponent.color}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Material:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.material}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Length (mm):&nbsp; </label>
+                                                        
+                                                    </td>    
+                                                    <td><label>{{partcomponent.length}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">UOM:&nbsp; </label>
+                                                      
+                                                    </td>
+                                                    <td>  <label>{{partcomponent.uom}}</label></td>
+                                                                                                                                                        
+                                                </tr>    
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Max (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.maxtemp}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Temp Min (&#8451;):&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.mintemp}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Bundle Dia:&nbsp;</label>
+                                                       
+                                                    </td>        
+                                                    <td> <label>{{partcomponent.bundledia}}</label></td>                               
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="font-weight-bold">Whole Size:&nbsp; </label>
+                                                     
+                                                    </td>
+                                                    <td>   <label>{{partcomponent.wholesize}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Panel Thickness:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.panelthickness}}</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <td>
+                                                        <label class="font-weight-bold">Status:&nbsp; </label>
+                                                        <label>{{partcomponent.status}}</label>
+                                                    </td> -->
+                                                    <td>
+                                                        <label class="font-weight-bold">Weight:&nbsp; </label>
+                                                       
+                                                    </td>
+                                                    <td> <label>{{partcomponent.weight}}</label></td>
+                                                    <td>
+                                                        <label class="font-weight-bold">Rank:&nbsp; </label>
+                                                        
+                                                    </td> 
+                                                    <td><label>{{partcomponent.rank}}</label></td>                                                   
+                                                    <td>
+                                                        <label class="font-weight-bold">Remarks:&nbsp; </label>
+                                                        
+                                                    </td>
+                                                    <td><label>{{partcomponent.remarks}}</label></td>
+                                                    <td></td>  
+                                                </tr>
+                                            </ng-container>
+                                            <tr *ngFor="let doccode of partcomponent.ldocumentlist; let X=index">
+                                                <td rowspan="4" *ngIf = "X == 0">
+                                                    Document
+                                                </td>
+                                                <td>
+                                                    <ng-container *ngIf = "doccode.doc_type == 'PDF'; else tp">
+                                                        <!-- <div class="row" style="display: inline;"> -->
+                                                          <!-- <ul style="margin: 10px;">    
+                                                            <li style="display: inline;"> -->
+                                                              <a (click)="ViewDocument(doccode.id)">
+                                                                {{doccode.doc_name}}
+                                                              </a>
+                                                            <!-- </li>
+                                                          </ul> -->                                  
+                                                        <!-- </div>-->
+                                                      </ng-container>
+                                                      <ng-template #tp>
+                                                        <!-- <div class="row" style="display: inline;"> -->
+                                                          <!-- <ul style="margin: 10px;">    
+                                                              <li style="display: inline;">     -->
+                                                                  <a (click)="ViewDocument(doccode.id)">    
+                                                                    {{doccode.doc_name}}
+                                                                  </a>    
+                                                              <!-- </li>    
+                                                          </ul>-->
+                                                      <!-- </div> -->
+                                                      </ng-template>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- <div class="row">
+                                        <div class="col-sm-6"> working
+                                            <div class="row imagediv">
+                                                <ul>    
+                                                    <li *ngFor="let img of allImages">    
+                                                        <a [routerLink]="['/image', img.id]">    
+                                                          <img src="{{img.url}}" class="img" width="240" height="170">    
+                                                        </a>    
+                                                    </li>    
+                                                </ul>                                                    
+                                            </div> 
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <ng2-pdfjs-viewer class="fill" viewerId="MyID2" #viewer pdfSrc="https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf"
+                                                                    locale="de-AT" (onDocumentLoad)="pdfLoaded()"
+                                                                    cursor="HAND" downloadFileName="research.pdf" scroll="W" spred="E" [download]=false [print] =false downloadFileName="mySample" zoom="auto"
+                                                                    [errorOverride]="true" errorMessage="My error Message"></ng2-pdfjs-viewer>
+                                                                                                                 
+                                            <mat-grid-list cols="5" rowHeight="80vh">
+                                                <mat-grid-tile
+                                                  [colspan]="3"
+                                                  [rowspan]="1">
+                                                  <ng2-pdfjs-viewer class="fill" viewerId="MyID2" #viewer pdfSrc="src"
+                                                                    locale="de-AT" (onDocumentLoad)="pdfLoaded()" [zoom]="zoom"
+                                                                    cursor="HAND" downloadFileName="research.pdf" scroll="W" spred="E" [print]="false"
+                                                                    [errorOverride]="true" errorMessage="My error Message"></ng2-pdfjs-viewer>
+                                                </mat-grid-tile>
+                                            </mat-grid-list>
+                                            <div class="pdf-container">
+                                                <ng2-pdfjs-viewer pdfSrc="src"></ng2-pdfjs-viewer>
+                                            </div>
+                                        </div>                                        
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>    
+</section>
+<style>
+    .img {      
+        margin:6px 6px;      
+        border: 4px solid #eee;      
+        box-shadow:rgb(224, 199, 199) 1px 1px 8px 1px;      
+        cursor: pointer      
+    }      
+    .modal-content {      
+        width: 1000px !important;      
+    }      
+    .imagediv ul { 
+        padding:0; 
+        width:1200px; 
+        margin:20px auto;
+        margin-left: 80px;
+    }      
+    .imagediv li { 
+        display:inline;
+    } 
+</style>

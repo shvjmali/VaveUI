@@ -1,0 +1,202 @@
+<ng-snotify></ng-snotify>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="animated fadeIn">  
+  <div class="">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-lg-4">
+            <h4><strong>TECHNICAL PROPOSAL LIST</strong></h4>
+          </div>
+          <div class="col-lg-8" style="margin: auto;">
+            <h6 style="font-size: 12px; margin: 0px; font-weight:normal; font-weight: bold; float: right;">Note- Below data is only referance purpose, request you to please validate before using and also take customer approval.</h6>
+          </div>
+        </div>        
+      </div>
+      <div class="card-block">
+        <div class="row">
+        <div class="col-lg-12">
+          <div class="row margin-bottom-15">
+            <div class="col-lg-3">
+              <div class="input-group">
+                <input type="text" class="form-control" [(ngModel)]="searchVal" 
+                (ngModelChange)='checkSearchVal()' placeholder="Control Number or Part Number" />
+              </div>
+            </div>
+            <div class="col-lg-6"></div>
+            <div class="col-lg-3">
+              <!-- <div class="input-group" style="margin-left: 176px;margin-top: 2px;">
+                <button style="float:right" class="btn btn-primary" type="button" (click)="addTwistCode()">Search</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+        <table class="table table-responsive table-bordered table-stripped text-center table-sm">
+          <thead>
+            <tr>
+              <th>Control Number</th>
+              <th>Proposal Type</th>
+              <th>Team Code</th>
+              <!-- <th>Part List</th> -->
+              <th>View</th>
+              <th>Request</th>
+            </tr>
+          </thead>          
+          <tbody *ngFor="let code of pagedItems">       
+            <td>
+              {{code.ProposalNumber}}
+            </td>
+            <td>
+              {{code.ProposalType}}
+            </td>
+            <td>
+              {{code.TeamCode}}
+            </td>           
+            <td>
+              <span>
+                <i (click)="ViewProposalDetail(code)" style="font-size: 20px;color:blue;cursor: pointer;" title="View"
+                  class="fa fa-eye"></i>
+              </span>
+            </td>
+            <td>
+              <a class="color-blue" title="Request" (click)="requestproposaldetail(code, RequestDetails)">
+                <i class="fa fa-pencil"></i>
+              </a>
+            </td>
+            <!-- <ng-container *ngFor="let partN of code.sPartList?.split(','); let i = index">
+              <tr *ngIf="i == 0; else elseBlock">                
+                <td rowspan="2">
+                  {{code.ProposalNumber}}
+                </td>
+                <td rowspan="2">
+                  {{code.ProposalType}}
+                </td>
+                <td rowspan="2">
+                  {{code.TeamCode}}
+                </td>
+                <td>{{partN}}</td>
+                <td rowspan="2">
+                  <span>
+                    <i (click)="ViewProposalDetail(code)" style="font-size: 20px;color:blue;cursor: pointer;" title="Delete Twist Code"
+                      class="fa fa-eye"></i>
+                  </span>
+                </td>
+              </tr>
+              <ng-template #elseBlock>
+                <tr>
+                  <td>{{partN}}</td>                
+                </tr>
+              </ng-template>
+            </ng-container>   -->
+          </tbody>
+        </table>
+      
+        <ul style="float: right;" *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{ disabled: pager.currentPage === 1 }"><a (click)="setPage(1)">First</a></li>
+          <li [ngClass]="{ disabled: pager.currentPage === 1 }"><a (click)="setPage(pager.currentPage - 1)">Previous</a></li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{ active: pager.currentPage === page }">
+            <a (click)="setPage(page)">{{ page }}</a>
+          </li>
+          <li [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"><a (click)="setPage(pager.currentPage + 1)">Next</a></li>
+          <li [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"><a (click)="setPage(pager.totalPages)">Last</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #RequestDetails="bs-modal" [config]="{backdrop: 'true'}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-primary modal-lg" role="document">
+    <form [formGroup]="form" (ngSubmit) = "RequestDetailSubmit(form.value, RequestDetails)"> 
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Request Technical Proposal Details</h4>
+          <button type="button" class="close" (click)="RequestDetails.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="card-block">
+              <div class="form-group row">
+                <div class="col-md-4">
+                  <input type="text" class="input-group form-control rounded-0" placeholder="Customer Name" formControlName="CustomerName" > 
+                    <!-- appForbiddenName="bob" name="CustomerName" [(ngModel)]="requestModel.CustomerName"
+                    #CustomerName="ngModel"-->
+                    <!-- <div *ngIf="CustomerName.invalid && (CustomerName.dirty || CustomerName.touched)" class="alert alert-danger">
+                      <div *ngIf="CustomerName.errors.required">
+                        Customer is required.
+                      </div>                      
+                    </div> -->
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="input-group form-control rounded-0" placeholder="Customer Model" formControlName="CustomerModel">                  
+                  <!--name="CustomerModel" [(ngModel)]="requestModel.CustomerModel"
+                    #CustomerModel="ngModel"-->
+                </div>
+                <div class="col-md-4">
+                  <textarea class="input-group form-control rounded-0" rows="5"  placeholder="Request Details" formControlName="Requirement"></textarea>                  
+                  <!--name="Requirement" [(ngModel)]="requestModel.Requirement"
+                    #Requirement="ngModel"-->
+                </div>
+              </div>            
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" [disabled]="!form.valid">Request</button>
+            <!-- <button type="submit" class="btn btn-danger" (click)='RejectSummary(proposalCode); RequestDetails.hide()'>Reject</button> -->
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  .custom-file-input {
+    padding: 5px;
+    color: #999;
+    border: 1px solid #000;
+    vertical-align: middle;
+    opacity: 1;
+  }
+
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+  .custom-file-input::before {
+    content: 'Browse';
+    color: #666;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 3px;
+    margin: -2px 0 -3px 425px;
+    padding: 5px 20px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-align: center;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+
+  .custom-file-input:active {
+    outline: 0;
+  }
+
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  }
+
+  form.ng-untouched.ng-pristine.ng-valid:focus,
+  input#upload:focus {
+    outline: none;
+  }
+</style>

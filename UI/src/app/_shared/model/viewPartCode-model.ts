@@ -1,0 +1,61 @@
+export class ViewPartCode {
+  id: number;
+  plantCode: string;
+  requestedBy: string;
+  requestedOn: any;
+  dept: string;
+  modifiedBy: string;
+  modifiedOn: any;
+  status: string;
+  requestType: any;
+  lineId: number;
+  lineItemId: number;
+  partCodeId: number;
+  yazakiSpecific: string;
+  partCodeNumber: string;
+  controlCode: number;
+  description: string;
+  materialType: string;
+  materialGroup: string;
+  uom: string;
+  category: string;
+  subCategory: string;
+  purchaseGroup: string
+  supplierPartNo: string;
+  assetCode: string;
+  finalAssetCode: string;
+  remark: string;
+  valuationClass: string;
+  lineItemStatus: string;
+  ViewPartCode() {
+    this.id = null;
+    this.plantCode = null;
+    this.requestedBy = null;
+    this.requestedOn = null;
+    this.dept = null;
+    this.modifiedBy = null;
+    this.modifiedOn = null;
+    this.status = null;
+    this.lineItemStatus = null;
+    this.requestType = null;
+    this.lineItemId = null;
+    this.lineId = null;
+    this.partCodeId = null;
+    this.valuationClass = null;
+    this.plantCode = null;
+    this.yazakiSpecific = null;
+    this.partCodeNumber = null;
+    this.controlCode = null;
+    this.description = null;
+    this.materialType = null;
+    this.materialGroup = null;
+    this.uom = null;
+    this.category = null;
+    this.subCategory = null;
+    this.purchaseGroup = null;
+    this.supplierPartNo = null;
+    this.assetCode = null;
+    this.finalAssetCode = null;
+    this.remark = null;
+  }
+}

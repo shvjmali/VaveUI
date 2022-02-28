@@ -1,0 +1,205 @@
+<!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading> -->
+<header class="app-header navbar">
+  <button class="navbar-toggler d-lg-none" type="button" appMobileSidebarToggler>&#9776;</button>
+  <!-- <a *ngIf="!companyLogo" class="navbar-brand">
+    <img src="assets/img/logo.png" class="img-fluid">
+  </a> -->
+  <a class="navbar-brand">
+    <!-- *ngIf="companyLogo" -->
+    <img class="img-fluid" src="assets/img/Yazaki_Logo.png" />
+  </a>
+
+  <ul class="nav navbar-nav d-md-down-none">
+    <!-- <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']">Home</a>
+    </li> -->
+    <p class="ProjectName">
+      <!-- *ngIf="companyLogo" -->
+      <b class="ProjectName">VAVE Portal</b>
+    </p>
+  </ul>
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item d-md-down-none">
+      <span *ngIf="isPaymentDone" class="badge badge-pill badge-primary font-sm">
+        <i class="fa fa-hourglass-2" area-hidden="true"></i> Subscription ends in <b class="blink"> expire in </b> days</span
+      >
+      <!-- {{expairyDays}} -->
+    </li>
+    <li class="nav-item  dropdown">
+      <!-- <a class="nav-link " href="#" data-toggle="dropdown" aria-expanded="true">
+        <i class="icon-bell fa-lg"></i>
+        <span class="badge badge-pill badge-danger">5</span>
+      </a> -->
+
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li class="dropdown-item">
+          <a href="#">Manage Profile</a>
+        </li>
+        <li class="dropdown-item">
+          <a href="#">Privacy</a>
+        </li>
+        <li class="dropdown-item">
+          <a href="#">Setting</a>
+        </li>
+        <li class="dropdown-item">
+          <a href="#">Logout</a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
+      <a href class="nav-link dropdown-toggle" dropdownToggle (click)="(false)">
+        <img src="assets/img/avatars/default-profile.png" class="img-avatar" alt="default-profile" />
+        <span class="d-md-down-none"> </span>
+        {{ userDetails[0].userName }}
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <div class="dropdown-header text-center">
+          <strong>Account</strong>
+        </div>
+        <a href="http://10.25.1.47/WORKFLOWS/Pages/default.aspx" class="dropdown-item" style="cursor: pointer;"> <i class="fa fa-lock"></i> Logout</a>
+      </div>
+    </li>
+    <li class="nav-item d-md-down-none"></li>
+  </ul>
+</header>
+<div class="app-body">
+  <div class="left-side-menubar menu-display">
+    <div class="toggle-menu-btn">
+      <button type="button">
+        <i class="fa fa-bars sidebar-action-btn"></i>
+      </button>
+    </div>
+    <div class="left-menubar">
+      <nav class="sidebar-nav">
+        <ul class="nav side-nav-bar">
+          <li class="nav-item">
+            <a routerLinkActive="active"  [routerLink]="['/home/Hdashboard']">
+             <!-- *ngIf="userDetails[0].role_Code === 'USER'"  <a routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="userDetails[0].role_Code !== 'APP_ADMIN'"> -->
+              <span class="icon-main">
+                <i class="icon-user fa-lg"></i>
+              </span>
+              <span class="menu-text show-menu">User</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLinkActive="active"  [routerLink]="['/masters-add/managementd']">
+             <!-- *ngIf="userDetails[0].role_Code === 'USER'"  <a routerLinkActive="active" [routerLink]="['/dashboard']" *ngIf="userDetails[0].role_Code !== 'APP_ADMIN'"> -->
+              <span class="icon-main">
+                <i class="fa fa-bar-chart"></i>
+              </span>
+              <span class="menu-text show-menu">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLinkActive="active" *ngIf="userDetails[0].role_Code === 'USER'" [routerLink]="['/masters-add/report']">
+              <span class="icon-main">
+                <i class="fa fa-file"></i>
+              </span>
+              <span class="menu-text show-menu">Reports</span>
+            </a>
+          </li> 
+
+
+          <li class="nav-item">
+            <a routerLinkActive="active" *ngIf="userDetails[0].role_Code === 'APP_ADMIN' || userDetails[0].role_Code === 'SUPER_ADMIN'" [routerLink]="['/access-permission/admin']">
+              <span class="icon-main">
+                <i class="fa fa-unlock-alt"></i>
+              </span>
+              <span class="menu-text show-menu">Admin</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLinkActive="active" *ngIf="userDetails[0].role_Code === 'APP_ADMIN' || userDetails[0].role_Code === 'SUPER_ADMIN'" [routerLink]="['/masters-add/Mdashboard']">
+              <span class="icon-main">
+                <i class="fa fa-database"></i>
+              </span>
+              <span class="menu-text show-menu">Masters</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLinkActive="active" *ngIf="userDetails[0].role_Code === 'SUPER_ADMIN'" [routerLink]="['/masters-add/mytask']">
+              <span class="icon-main">
+                <i class="fa fa-superpowers"></i>
+              </span>
+              <span class="menu-text show-menu">My-Task</span>
+            </a>
+          </li>   
+          <li class="nav-item">
+            <a routerLinkActive="active" *ngIf="userDetails[0].role_Code === 'SUPER_ADMIN'" [routerLink]="['/masters-add/report']">
+              <span class="icon-main">
+                <i class="fa fa-file"></i>
+              </span>
+              <span class="menu-text show-menu">Reports</span>
+            </a>
+          </li>            
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <main class="main main-container  main-container-compress">
+    <!-- Breadcrumb -->
+    <ol class="breadcrumb" style="background:#eceff1;"><!-- #74a5cf;-->
+      <li class="breadcrumb-item active">Home</li>
+    </ol>
+
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- /.conainer-fluid -->
+  </main>
+</div>
+
+<footer class="app-footer">
+  <a href="https://www.yazaki-group.com/global/">&copy; Yazaki India Pvt. Ltd.</a> 2017. All Rights Reserved
+  <span class="float-right"
+    >Powered by
+    <a href="https://www.yazaki-group.com/global/" target="blank">Yazaki India Pvt. Ltd.</a>
+  </span>
+</footer>
+<style>
+  @-webkit-keyframes blinker {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  /*
+  .blink {
+    text-decoration: blink;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-direction: alternate;
+  } */
+
+  .button {
+    padding: 5px 10px;
+    background: #2664cf;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+  }
+
+  .button {
+    border: 1px solid #4cadfc;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+  }
+
+  .button {
+    background: -webkit-gradient(linear, left top, left bottom, from(#0a8ffe), to(#2b5cc6));
+    background: -moz-linear-gradient(top, #0a8ffe, #2b5cc6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0a8ffe', endColorstr='#2b5cc6');
+  }
+</style>

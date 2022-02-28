@@ -1,0 +1,42 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<section>
+  <form novalidate autocomplete="off" #myForm="ngForm">
+    <div class="FormClient">
+      <div class="form-group">
+        <div class="card">
+          <div class="card-header Search_padding">
+            <div class="row">
+              <div class="col-sm-10">
+                <h4> Full Part / Proposal Master Report </h4>
+              </div>
+            </div>
+          </div>
+          <div class="card-block Search_padding">
+            <div class="row">
+              <div class="container">
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right" for="select" style="padding-top:23px ;">Please Click Button For Required Report
+                    <sup class="text-danger">*</sup>
+                  </label>
+                  <div class="twobutton" style="margin-top: 18px;" >
+                    <div class="pull-right" *ngIf = "role != 'USER';">
+                    <!-- <select class="form-control w-60" name='reportname' (click)="onChangeEvent($event)">
+                      <option value="" selected="true" disabled="true"> Select Report</option>
+                      <option value="GetAllPartList" > Part Master</option>
+                      <option value="getProposalDetail" > Proposal Master</option>
+                    </select> -->
+                    <button type="submit" value="GetAllPartList" class="btn btn-success" style="margin-right: 18px;" (click)="download()">Part Master</button>
+                    <button type="submit" value="getProposalDetail" class="btn btn-success" (click)="download()">Proposal Master</button>
+                    
+                    </div>
+                      <!-- <button type="submit" class="btn btn-success" (click)="download()">Download</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

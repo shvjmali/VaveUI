@@ -1,0 +1,27 @@
+[{
+    "FirstName": {
+      "Label": "First Name",
+      "type": "string",
+      "sortOrder": 1,
+      "required": true
+    },
+  
+    "LastName": {
+      "Label": "Last Name",
+      "type": "string",
+      "sortOrder": 2,
+      "required": true
+    },
+  
+    "Email": {
+      "Label": "E-mail",
+      "type": "email",
+      "sortOrder": 2,
+      "required": true,
+      "pattern": {
+        "regex": "^\\S+@\\S+$",
+        "validationMessage": ""
+      }
+    }
+  }
+]

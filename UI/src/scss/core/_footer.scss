@@ -1,0 +1,38 @@
+.app-footer {
+  min-height: $footer-height;
+  padding: 0 $spacer;
+  line-height: $footer-height;
+  color: $footer-color;
+  background: $footer-bg;
+  @include borders($footer-borders);
+}
+.simple-footer {
+  min-height: $footer-height;
+  padding: 0 $spacer;
+  line-height: $footer-height;
+  color: $footer-color;
+  background: $footer-bg;
+  @include borders($footer-borders);
+  margin-left: 0 !important;
+}
+.footer-brand {
+  display: inline-block;
+  width: $navbar-brand-width;
+  height: $navbar-height;
+  // padding: $navbar-padding-y $navbar-padding-x;
+  // margin-right: 0;
+  background-color: $thumbnail-bg;
+  background-image: $navbar-brand-logo;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 80px auto;
+  // @include borders($navbar-brand-border);
+}
+// .company-logo
+.company-copy,
+.company-address,
+.company-contact {
+  color: white;
+  border-left: 1px solid gray;
+  padding-left: 15px;
+}

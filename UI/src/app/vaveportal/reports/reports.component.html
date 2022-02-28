@@ -1,0 +1,137 @@
+<ng-snotify></ng-snotify>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-block">
+          <div class="h5 text-muted mb-2 text-uppercase "><strong>Search Xml</strong></div>
+          <hr />
+          <form novalidate class="file-process" #searchForm="ngForm">
+            <!-- <div class="row"> -->
+            <div class="row margin-bottom-15">
+              <div class="col-lg-3">
+                <div class="input-group">
+                  <select class="form-control" placeholder="Select Plant" name="plantCode" required id="plantCode" #plantCode="ngModel"
+                    [(ngModel)]="selectedPlantCode">
+                    <option value="-1" [selected]="true" disabled="true"> Select Plant Code</option>
+                    <option *ngFor="let item of plantCodes" value="{{ item.plantCode }}"> {{ item.plantCode }} </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="input-group">
+                  <input type="date" class="form-control" name="fromDate" id="fromDate" #frmDate="ngModel" [(ngModel)]="dateFrom" />
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="input-group">
+                  <input type="date" class="form-control" name="toDate" id="toDate" #tDate="ngModel" [(ngModel)]="dateTo" />
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="pull-left row">
+                  <button class="btn btn-primary" style="margin-right: 10px;" type="button" (click)="search(searchForm)">Search</button>
+                  <button class="btn btn-primary" type="button" (click)="reset(searchForm)">Reset</button>
+                </div>
+              </div>
+            </div>
+            <!-- </div> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="">
+  <div class="card">
+    <div class="card-header"><strong>Report</strong>
+      <button *ngIf="fileDetails.length>0" class="btn btn-primary" (click)="exportData()" style="margin-top: 1px;float: right;">Export</button>
+    </div>
+    <div class="card-block">
+      <table class="table table-responsive table-bordered table-stripped text-center table-sm">
+        <thead>
+          <tr>
+            <th>Plant</th>
+            <th>Date</th>
+            <th>Uploaded By</th>
+            <th>W/H Part No</th>
+            <!-- <th>Status</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let file of pagedItems">
+            <td>{{ file.plantCode }}</td>
+            <td>{{ file.date}}</td>
+            <td>{{ file.uploadedBy }}</td>
+            <td>{{ file.sourceFileName }}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+      <ul style="float: right;" *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <!-- <li style="margin-right: 30px;">
+            <input type="button" class="btn" (click)="ExportData()" style="height: 35px;background: #f6821f;color: white;"
+              value="Download Selected Excel" />
+          </li> -->
+        <li [ngClass]="{ disabled: pager.currentPage === 1 }"><a (click)="setPage(1)">First</a></li>
+        <li [ngClass]="{ disabled: pager.currentPage === 1 }"><a (click)="setPage(pager.currentPage - 1)">Previous</a></li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{ active: pager.currentPage === page }">
+          <a (click)="setPage(page)">{{ page }}</a>
+        </li>
+        <li [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"><a (click)="setPage(pager.currentPage + 1)">Next</a></li>
+        <li [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"><a (click)="setPage(pager.totalPages)">Last</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<style>
+  .custom-file-input {
+    padding: 5px;
+    color: #999;
+    border: 1px solid #000;
+    vertical-align: middle;
+    opacity: 1;
+  }
+
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+  .custom-file-input::before {
+    content: 'Browse';
+    color: #666;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #999;
+    border-radius: 3px;
+    margin: -2px 0 -3px 425px;
+    padding: 5px 20px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-align: center;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+
+  .custom-file-input:active {
+    outline: 0;
+  }
+
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  }
+
+  form.ng-untouched.ng-pristine.ng-valid:focus,
+  input#upload:focus {
+    outline: none;
+  }
+</style>

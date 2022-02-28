@@ -1,0 +1,56 @@
+<ng-snotify></ng-snotify>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="animated fadeIn">
+    <div class="">
+        <div class="card">
+            <div class="card-header"><h4>
+                <strong>Document View -    Part Number :- {{partDocumentModel.partnumber}}     Document Name :- {{partDocumentModel.doc_name}}</strong>
+            </h4></div>
+            <div class="card-block">
+                <div class="row">
+                    <ng-container *ngIf = "partDocumentModel.doc_type == 'PDF'; else tp">
+                        <ng2-pdfjs-viewer class="fill" viewerId="MyID2" #viewer pdfSrc={{partDocumentModel.doc_path}}
+                      locale="de-AT" (onDocumentLoad)="pdfLoaded()" cursor="HAND" downloadFileName="partDocumentModel.doc_name" 
+                      scroll="W" spred="E" [download]=false [print] =false downloadFileName="mySample" zoom="auto"
+                      [errorOverride]="true" errorMessage="My error Message" style="width: 100%; height: 500px;">
+                      </ng2-pdfjs-viewer>
+                    </ng-container>
+                    <ng-template #tp>
+                        <div class="row imagediv">
+                          <ul style="margin: 10px;">    
+                              <li>    
+                                  <a>    
+                                    <img src="{{partDocumentModel.doc_path}}" class="img" style="display:block;" width="90%" height="90%"><!--width="240" height="170"-->
+                                  </a>    
+                              </li>    
+                          </ul>                                                    
+                      </div>
+                      </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    img {      
+        margin:6px 6px;      
+        border: 4px solid #eee;      
+        box-shadow:rgb(224, 199, 199) 1px 1px 8px 1px;      
+        cursor: pointer      
+    }      
+    /* .modal-content {      
+        width: 1000px !important;      
+    }*/
+    /* .imagediv{
+
+    } */
+    .imagediv ul { 
+        padding:0; 
+        /* width:1200px;  */
+        margin:20px auto;
+        margin-left: 80px;
+    }      
+    .imagediv li { 
+        display:inline;
+    }
+</style>
